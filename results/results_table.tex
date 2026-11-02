@@ -1,0 +1,49 @@
+% LaTeX source of the paper results table (citation keys refer to the paper bibliography).
+% Requires: \usepackage{booktabs,multirow,graphicx}
+% Fits ONE column (\columnwidth). Wrapper scales only if the natural width exceeds the column.
+\begin{table}[t]
+\centering
+\caption{Comparison with SOTA methods on three datasets. Our results use a fixed held-out split, with checkpoints
+selected on a validation set and the test set scored once; student results are averaged over 3 seeds. Best student per dataset in bold. SOTA numbers are
+taken from their papers (own protocols), so they are only a rough guide. FLOPs are for one forward pass at each model's
+training patch size.}
+\label{tab:results}
+\newsavebox{\resultsbox}
+\savebox{\resultsbox}{%
+\fontsize{8}{9}\selectfont
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}l l r r r@{}}
+\toprule
+\textbf{Dataset} & \textbf{Method} & \textbf{Par.\,(M)} & \textbf{FLOPs\,(G)} & \textbf{Dice\,(\%)} \\
+\midrule
+\multirow{6}{*}{\shortstack[l]{MSD\\Spleen}}
+ & UNETR~\cite{sota1_spleen}        & 92.6 & 146.1 & 96.4 \\
+ & nnU-Net~\cite{sota2_spleen}      & 30 & 403.5 & 96.0 \\
+ & CoTr~\cite{sota3_spleen}         & 41.9 & 561.2 & 95.4 \\
+ & Teacher (ours)~\cite{P21}          & 138.8 & 1566 & 96.84 \\
+ & Student, no KD                   & 0.956 & 235.7 & 95.86 \\
+ & \textbf{Student+DIST (ours)}     & \textbf{0.956} & \textbf{235.7} & \textbf{96.10} \\
+\midrule
+\multirow{6}{*}{\shortstack[l]{MSD\\Hippo.}}
+ & nnU-Net~\cite{sota1_hippo}       & 30 & 40.0 & 89.5 \\
+ & ReCo-KD~\cite{sota2_hippo}       & 1.57 & 1.0 & 88.93 \\
+ & Swin UNETR~\cite{sota3_hippo}    & 62.2 & 636.1 & 89.19 \\
+ & Teacher (ours)~\cite{P21}          & 138.8 & 87.0 & 88.68 \\
+ & \textbf{Student, no KD}         & \textbf{0.957} & \textbf{4.9} & \textbf{87.88} \\
+ & Student+DIST (ours)              & 0.957 & 4.9 & 87.59 \\
+\midrule
+\multirow{6}{*}{BraTS}
+ & SegResNet~\cite{sota1_brats}     & 18.8 & 1169.2 & 88.26 \\
+ & Swin UNETR-V2~\cite{sota2_brats} & 72.77 & 1665.6 & 89.39 \\
+ & SegMamba~\cite{sota3_brats}      & 67.27 & 2966.5 & 91.32 \\
+ & SegMamba-V2 (teacher)~\cite{xing2025segmambav2} & 138.8 & 3730.7 & 88.88 \\
+ & Student, no KD                   & 0.957 & 211.5 & 88.95 \\
+ & \textbf{Student+DIST (ours)}     & \textbf{0.957} & \textbf{211.5} & \textbf{88.96} \\
+\bottomrule
+\end{tabular}}
+\ifdim\wd\resultsbox>\columnwidth
+  \resizebox{\columnwidth}{!}{\usebox{\resultsbox}}%
+\else
+  \usebox{\resultsbox}%
+\fi
+\end{table}

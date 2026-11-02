@@ -1,0 +1,10 @@
+# The training/eval scripts also import `light_training` and `models_segmamba` from the
+# official SegMamba / SegMamba-V2 code base (not included here), see README.
+torch
+monai
+numpy
+scipy
+nibabel
+SimpleITK
+matplotlib
+thop        # tools/compute_flops.py

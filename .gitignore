@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+# checkpoints, data and run outputs never go in git
+*.pt
+*.pth
+*.ckpt
+*.nii
+*.nii.gz
+*.npy
+*.npz
+data/
+splits/
+logs/
+logs_fixedsplit/
+runs/
